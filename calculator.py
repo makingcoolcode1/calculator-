@@ -2,19 +2,24 @@
 from tkinter import *
 
 def button_press(value):
-    current = entry_window.get()
+    press = entry_window.get()
     entry_window.delete(0, END)
-    entry_window.insert(0, current + value)
+    entry_window.insert(0, press + value)
 
 def calculate():
+
     try:
         calc = entry_window.get()
+        result = eval(str(calc))
         entry_window.delete(0, END)
-        entry_window.insert(0, eval(str(calc)))
+        entry_window.insert(0, result)
+        print(f"Calculation: {calc} = {result}" )
     except Exception as e:
         entry_window.delete(0, END)
         entry_window.insert(0, f"ERROR: {str(e)}")
 
+
+    
 
 root = Tk()
 root.title("Calculator")
@@ -35,16 +40,16 @@ buttons = [
 
 for (text, row, col) in buttons:
 
-    main_buttons = Button(root, text=text, command = lambda value  = text:button_press(value) if value !="=" else calculate())
+    main_buttons = Button(root, text=text, command=lambda value = text:button_press(value) if value!="=" else calculate())
     main_buttons.grid(row = row, column=col, sticky=NSEW)
 
-equels_button = Button(root, text="=", width=20 ,command=calculate)
+equels_button = Button(root, text="=", width=20, command=calculate)
 equels_button.grid(row = 5, column=0, columnspan=4, sticky=NSEW)
 
 for i in range(6):
     root.columnconfigure(i, weight=2)
     root.rowconfigure(i, weight=2)
 
-
+print(calculate)
 
 root.mainloop()
