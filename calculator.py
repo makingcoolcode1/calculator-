@@ -49,6 +49,8 @@ for i in range(6):
     root.columnconfigure(i, weight=2)
     root.rowconfigure(i, weight=2)
 
-print(calculate)
+for i in range(4):
+    root.columnconfigure(i, weight=1)
+    root.rowconfigure(i, weight=1)
 
 root.mainloop()
