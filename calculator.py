@@ -18,7 +18,7 @@ def calculate():
         entry_field.insert(0, str(e))
 
 
-    
+
 
 root = Tk()
 root.title("Calculator")
