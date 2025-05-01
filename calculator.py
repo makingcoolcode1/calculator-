@@ -21,6 +21,7 @@ def clear_screen():
     entry_field.delete(0, END)
 
 
+
 root = Tk()
 root.title("Calculator")
 root.geometry("400x400")
