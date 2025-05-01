@@ -39,6 +39,7 @@ numbers = [
 
 ]
 
+
 for text, row, col in numbers:
     main_buttons = Button(root, text=text, command=lambda value=text: insert_numbers(value) if entry_field != "=" else calculate)
     main_buttons.grid(row=row, column=col, sticky=NSEW)
