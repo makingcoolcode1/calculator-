@@ -54,5 +54,4 @@ for i in range(4):
     root.columnconfigure(i, weight=1)
     root.rowconfigure(i, weight=1)
 
-
 root.mainloop()
