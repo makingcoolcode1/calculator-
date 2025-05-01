@@ -1,23 +1,24 @@
 
 from tkinter import *
 
-def button_press(value):
-    press = entry_window.get()
-    entry_window.delete(0, END)
-    entry_window.insert(0, press + value)
+def insert_numbers(value):
+    number_text = entry_field.get()
+    entry_field.delete(0, END)
+    entry_field.insert(0, number_text + value)
 
 def calculate():
+
     try:
-        calc = entry_window.get()
-        result = eval(str(calc))
-        entry_window.delete(0, END)
-        entry_window.insert(0, result)
-        print(f"Calculation: {calc} = {result}" )
+        execute = entry_field.get()
+        entry_field.delete(0, END)
+        entry_field.insert(0, eval(str(execute)))
+    
     except Exception as e:
         entry_field.delete(0, END)
         entry_field.insert(0, str(e))
 
-
+def clear_screen():
+    entry_field.delete(0, END)
 
 
 
@@ -26,28 +27,28 @@ root.title("Calculator")
 root.geometry("400x400")
 root.resizable(0,0)
 
+entry_field = Entry(root, width=30)
+entry_field.grid(row=0, column=0, columnspan=4)
 
-entry_window = Entry(root, width=30, font=('verdana', 18))
-entry_window.grid(row = 0, column=0, columnspan=4)
+numbers = [
 
-buttons = [
-    ("9", 1,0), ("8", 1, 1), ("7", 1, 2), ("+", 1, 3), 
+    ("9", 1, 0), ("8", 1, 1), ("7", 1, 2), ("+", 1, 3), 
     ("6", 2, 0), ("5", 2, 1), ("4", 2, 2), ("-", 2, 3), 
     ("3", 3, 0), ("2", 3, 1), ("1", 3, 2), ("*", 3, 3)
 
 ]
 
-for (text, row, col) in buttons:
 
-    main_buttons = Button(root, text=text, command=lambda value = text:button_press(value) if value!="=" else calculate())
-    main_buttons.grid(row = row, column=col, sticky=NSEW)
+for text, row, col in numbers:
+    main_buttons = Button(root, text=text, command=lambda value=text: insert_numbers(value) if entry_field != "=" else calculate)
+    main_buttons.grid(row=row, column=col, sticky=NSEW)
 
-equels_button = Button(root, text="=", width=20, command=calculate)
-equels_button.grid(row = 5, column=0, columnspan=4, sticky=NSEW)
+equals_btn = Button(root, text="=", command=calculate)
+equals_btn.grid(row=4, column=0, sticky=NSEW, columnspan=4)
 
-for i in range(6):
-    root.columnconfigure(i, weight=2)
-    root.rowconfigure(i, weight=2)
+clear_btn = Button(root, text="C", width=5, command=clear_screen)
+clear_btn.grid(row=0, column=3)
+
 
 for i in range(4):
     root.columnconfigure(i, weight=1)
