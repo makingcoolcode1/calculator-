@@ -27,7 +27,6 @@ root.title("Calculator")
 root.geometry("400x400")
 root.resizable(0,0)
 
-
 entry_field = Entry(root, width=30)
 entry_field.grid(row=0, column=0, columnspan=4)
 
